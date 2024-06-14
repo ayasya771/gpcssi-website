@@ -62,31 +62,26 @@ export default function Navbar() {
   const navItems = [
     {
       itemName: "Home",
-      icon: "fi-rr-house-chimney",
       link: "",
       activeCss: home,
     },
     {
       itemName: "About Us",
-      icon: "fi-rr-users-alt",
       link: "about-us",
       activeCss: about,
     },
     {
       itemName: "Archive",
-      icon: "fi-rr-box",
       link: "archive",
       activeCss: archive,
     },
     {
       itemName: "Attendance",
-      icon: "fi-bs-plus",
       link: "attendance",
       activeCss: attendance,
     },
     {
       itemName: loginbtnName,
-      icon: "fi-bs-user",
       link: "login",
       activeCss: login,
     },
@@ -132,7 +127,6 @@ export default function Navbar() {
             <Link to={`/${items.link}`} className={`${items.activeCss}`}>
               <button className="flex flex-row space-x-2 p-2 items-center mx-1">
                 <p className="mt-1 font-bold">
-                  <i className={`fi ${items.icon}`}></i>
                 </p>
                 <div className="font-bold">{items.itemName}</div>
               </button>
@@ -157,7 +151,6 @@ export default function Navbar() {
                   <button className="items-center">
                     <div className="flex flex-row space-x-4 p-2 items-center">
                       <p className="mt-1">
-                        <i className={`fi ${items.icon}`}></i>
                       </p>
                       <div>{items.itemName}</div>
                     </div>

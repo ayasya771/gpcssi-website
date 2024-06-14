@@ -2,7 +2,7 @@ import React from "react";
 
 export default function About() {
   return (
-    <div className="flex flex-col gap-8 w-full mt-24 md:mt-16 xl:mt-0">
+    <div className="flex flex-col gap-8 w-full mt-24 md:mt-16 xl:mt-20">
       <p className="text-[#AD0F0E] font-bold text-5xl">About Us</p>
       <div className="flex flex-col items-center w-full h-fit bg-[#323576] my-2 relative">
         <p className="text-base md:text-xl text-white font-semibold px-4 md:px-8 xl:px-24 pt-8 pb-72 xl:pb-40">
@@ -44,22 +44,22 @@ export default function About() {
         <div className="absolute -bottom-16 md:-bottom-56 xl:-bottom-32 flex flex-wrap justify-center xl:justify-between items-center w-9/12 gap-8">
           <img
             src="https://via.placeholder.com/220x260.png"
-            className="rounded-xl h-24 sm:h-32 md:h-fit w-24 sm:w-32 md:w-fit"
+            className="rounded-xl h-24 sm:h-32 md:h-52 w-24 sm:w-32 md:w-52 drop-shadow-2xl"
             alt="about"
           />
           <img
             src="https://via.placeholder.com/220x260.png"
-            className="rounded-xl h-24 sm:h-32 md:h-fit w-24 sm:w-32 md:w-fit"
+            className="rounded-xl h-24 sm:h-32 md:h-52 w-24 sm:w-32 md:w-52 drop-shadow-2xl"
             alt="about"
           />
           <img
             src="https://via.placeholder.com/220x260.png"
-            className="rounded-xl h-24 sm:h-32 md:h-fit w-24 sm:w-32 md:w-fit"
+            className="rounded-xl h-24 sm:h-32 md:h-52 w-24 sm:w-32 md:w-52 drop-shadow-2xl"
             alt="about"
           />
           <img
             src="https://via.placeholder.com/220x260.png"
-            className="rounded-xl h-24 sm:h-32 md:h-fit w-24 sm:w-32 md:w-fit"
+            className="rounded-xl h-24 sm:h-32 md:h-52 w-24 sm:w-32 md:w-52 drop-shadow-2xl"
             alt="about"
           />
         </div>
