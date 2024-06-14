@@ -30,8 +30,8 @@ export default function Attendance() {
         setSubmitted(false);
         setUsername("");
         setGPCSSI_ID("");
+        navigate('/')
       }, 2000);
-      navigate('/')
     } else {
       alert("Enter username or GPCSSI-ID");
     }
