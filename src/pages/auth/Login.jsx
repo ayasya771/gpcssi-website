@@ -43,13 +43,13 @@ export default function Login() {
 
   return (
     <div className="flex flex-col h-screen items-center justify-center gap-8">
-      <p className="text-[#AD0F0E] font-bold text-7xl my-8">
+      <p className="text-[#AD0F0E] font-bold text-6xl my-8">
         {panelShown ? `Welcome ${username}` : "Login"}
       </p>
       {!panelShown ? (
-        <form className="flex flex-col gap-6" onSubmit={handleSubmit}>
+        <form className="flex flex-col gap-6 w-screen items-center" onSubmit={handleSubmit}>
           <input
-            className="border-b-2 focus:outline-none focus:border-b-black text-3xl"
+            className="border-b-2 focus:outline-none focus:border-b-black text-3xl w-4/12"
             placeholder="Enter Your Username"
             value={username}
             onChange={(e) => {
@@ -57,7 +57,7 @@ export default function Login() {
             }}
           />
           <input
-            className="border-b-2 focus:outline-none focus:border-b-black text-3xl"
+            className="border-b-2 focus:outline-none focus:border-b-black text-3xl w-4/12"
             placeholder="Enter Your Password"
             value={password}
             onChange={(e) => {

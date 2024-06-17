@@ -128,7 +128,7 @@ export default function Navbar() {
               <button className="flex flex-row space-x-2 p-2 items-center mx-1">
                 <p className="mt-1 font-bold">
                 </p>
-                <div className="font-bold">{items.itemName}</div>
+                <div className="font-bold text-xl">{items.itemName}</div>
               </button>
             </Link>
           </div>

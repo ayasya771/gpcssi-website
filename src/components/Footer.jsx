@@ -22,7 +22,7 @@ function Footer() {
       <div className="w-full text-white text-2xl font-semibold flex justify-start xl:justify-end px-1">
         <p>
           Made with<span className="text-rose-500">{" <3 "}</span>by{" "}
-          <span className="text-[#D1AA66]">PARKS</span>
+          <span className="text-[#D1AA66]">SPARK</span>
         </p>
       </div>
     </div>

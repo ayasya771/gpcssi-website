@@ -17,13 +17,13 @@ export default function Archive() {
 function AnimatedCard({ index, items }) {
   const { ref, inView } = useInView({
     triggerOnce: false, 
-    threshold: 0.9, 
+    threshold: 0.1, 
   });
 
   const animationClass = inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10";
 
   return (
-    <div ref={ref} className={`transition-all duration-700 ease-in-out ${animationClass} flex flex-col grid-cols-9 mx-auto md:grid`}>
+    <div ref={ref} className={`transition-all duration-1000 ease-in-out ${animationClass} flex flex-col grid-cols-9 mx-auto md:grid`}>
       {/* Card Start */}
       {index % 2 === 0 ? (
         <div className="hidden md:contents">
@@ -32,9 +32,9 @@ function AnimatedCard({ index, items }) {
           </span>
           <div className="relative col-start-5 col-end-6 mr-7 md:mx-auto">
             <div className="flex items-center justify-center w-6 h-full">
-              <div className="w-1 h-full rounded-t-full bg-black"></div>
+              <div className="w-2 h-full bg-black"></div>
             </div>
-            <div className="absolute w-6 h-6 -mt-3 bg-[#D1AA66] border-2 border-black rounded-full top-1/2 items-center"></div>
+            <div className="absolute w-6 h-6 -mt-3 bg-[#D1AA66] border-4 border-black rounded-full top-1/2 items-center"></div>
           </div>
           <Link
             to={items.id}
@@ -53,9 +53,9 @@ function AnimatedCard({ index, items }) {
           </Link>
           <div className="relative col-start-5 col-end-6 mr-7 md:mx-auto">
             <div className="flex items-center justify-center w-6 h-full">
-              <div className="w-1 h-full rounded-t-full bg-black"></div>
+              <div className="w-2 h-full bg-black"></div>
             </div>
-            <div className="absolute w-6 h-6 -mt-3 bg-[#D1AA66] border-2 border-black rounded-full top-1/2 items-center"></div>
+            <div className="absolute w-6 h-6 -mt-3 bg-[#D1AA66] border-4 border-black rounded-full top-1/2 items-center"></div>
           </div>
           <span className="text-2xl font-bold text-black flex items-center justify-end col-start-6 col-end-7">
             {items.date}

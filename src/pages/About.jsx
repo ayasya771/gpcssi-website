@@ -41,7 +41,7 @@ export default function About() {
           molestiae autem cum ad! At voluptatibus debitis illum dolorem
           corrupti.
         </p>
-        <div className="absolute -bottom-16 md:-bottom-56 xl:-bottom-32 flex flex-wrap justify-center xl:justify-between items-center w-9/12 gap-8">
+        <div className="absolute -bottom-16 md:-bottom-56 xl:-bottom-32 flex flex-wrap justify-center xl:justify-between items-center w-9/12 gap-8 drop-shadow-2xl">
           <img
             src="https://via.placeholder.com/220x260.png"
             className="rounded-xl h-24 sm:h-32 md:h-52 w-24 sm:w-32 md:w-52 drop-shadow-2xl"
