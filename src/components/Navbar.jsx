@@ -58,7 +58,7 @@ export default function Navbar() {
       const username = token.split("/").pop().toLocaleUpperCase();
       setLoginBtnName(username);
     }
-  },);
+  });
   const navItems = [
     {
       itemName: "Home",
@@ -112,9 +112,10 @@ export default function Navbar() {
         <div className="text-2xl xl:text-5xl font-bold">
           <Link to="/">
             <button>
-              <p className="flex items-center">
+              <p className="flex items-center bg-gradient-to-r from-[#AD0F0E] to-[#323576] bg-clip-text text-transparent">
                 <span>
-                  <img src={logo} alt="logo" />
+                  {/* <img src={logo} alt="logo" /> */}
+                  GPCSSI
                 </span>
               </p>
             </button>
@@ -126,8 +127,7 @@ export default function Navbar() {
           <div key={index} className="items-center">
             <Link to={`/${items.link}`} className={`${items.activeCss}`}>
               <button className="flex flex-row space-x-2 p-2 items-center mx-1">
-                <p className="mt-1 font-bold">
-                </p>
+                <p className="mt-1 font-bold"></p>
                 <div className="font-bold text-xl">{items.itemName}</div>
               </button>
             </Link>
@@ -150,8 +150,7 @@ export default function Navbar() {
                 >
                   <button className="items-center">
                     <div className="flex flex-row space-x-4 p-2 items-center">
-                      <p className="mt-1">
-                      </p>
+                      <p className="mt-1"></p>
                       <div>{items.itemName}</div>
                     </div>
                   </button>

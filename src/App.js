@@ -26,7 +26,7 @@ function App() {
   }, []);
 
   return (
-    <div className="App">
+    <div className="App font-custom">
       <ScrollToTop />
       <div className="fixed w-screen z-20">
         <Navbar />

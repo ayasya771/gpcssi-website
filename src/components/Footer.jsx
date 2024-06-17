@@ -1,7 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
-import { accLink, useLink, socialLink } from "../data/footer";
-import logo from "../assets/images/GPCSSI.png";
 
 function Footer() {
   return (
@@ -11,15 +8,15 @@ function Footer() {
           <p>Home</p>
           <p>About</p>
           <p>Archive</p>
-          <p>Resources</p>
           <p>Login</p>
           <p>Attendance</p>
+          <p>Resources</p>
         </div>
-        <div className="flex flex-wrap w-full xl:w-8/12 justify-start xl:justify-end items-start text-4xl xl:text-7xl font-bold text-white">
+        <div className="flex flex-wrap w-full xl:w-8/12 justify-start xl:justify-end items-start text-4xl xl:text-5xl font-bold text-white">
           <p>GPCSSI 2024</p>
         </div>
       </div>
-      <div className="w-full text-white text-2xl font-semibold flex justify-start xl:justify-end px-1">
+      <div className="w-full text-white text-2xl font-figmafont font-semibold flex justify-start xl:justify-end px-1">
         <p>
           Made with<span className="text-rose-500">{" <3 "}</span>by{" "}
           <span className="text-[#D1AA66]">SPARK</span>
