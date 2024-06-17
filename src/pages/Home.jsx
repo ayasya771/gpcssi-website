@@ -11,13 +11,13 @@ export default function Home() {
           Gurugram Police Cyber Security Summer Internship
         </p>
         <div className="flex gap-8 my-12">
-          <Link to={'/about-us'} className="border border-[#323576] rounded-2xl min-w-36 py-2 hover:bg-[#323576] text-[#323576] hover:text-white duration-105">
-            <p className="capitalize text-2xl font-semibold">About us</p>
-          </Link>
-          <Link className="hover:bg-[#323576] bg-white rounded-2xl min-w-32 py-2 hover:text-white text-[#323576] border border-[#323576]">
+          <Link className="bg-white rounded-2xl min-w-32 py-2 text-[#323576] drop-shadow-xl hover:drop-shadow-none border border-white hover:border-[#323576]">
             <p className="capitalize text-2xl font-semibold">
               Apply
             </p>
+          </Link>
+          <Link to={'/about-us'} className="rounded-2xl min-w-36 py-2 hover:text-[#323576] duration-105">
+            <p className="capitalize text-2xl font-semibold">About us</p>
           </Link>
         </div>
       </div>
