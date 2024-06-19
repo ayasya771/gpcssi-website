@@ -2,7 +2,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="px-8 py-12 bg-[#323576] space-y-6 items-center mt-64 2xl:mt-24">
+    <div class="px-8 pt-12 pb-8 bg-[#323576] space-y-6 items-center mt-64 2xl:mt-24">
       <div className="w-full h-full flex flex-col-reverse md:flex-row justify-between items-start gap-6 xl:gap-0">
         <div className="flex flex-wrap justify-start xl:justify-center w-full xl:w-4/12 h-full gap-6 xl:gap-12 text-base xl:text-3xl font-semibold text-white">
           <p>Home</p>

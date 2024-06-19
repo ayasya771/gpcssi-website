@@ -1,96 +1,145 @@
-import React, { useEffect, useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Cookies from "js-cookie";
+import React, { useState, useEffect } from "react";
+import { SafeAreaView, View, Text, Image, Button, StyleSheet } from "react-native-web";
+import { GoogleOAuthProvider, useGoogleLogin } from '@react-oauth/google';
+import firebase from "firebase/app";
+import "firebase/auth";
+import "firebase/database";
 
-export default function Login() {
-  function generateToken(length = 16) {
-    const characters =
-      "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-    let token = "";
-    for (let i = 0; i < length; i++) {
-      token += characters.charAt(Math.floor(Math.random() * characters.length));
-    }
-    return token;
-  }
+// Firebase configuration
+const firebaseConfig = {
+  apiKey: "AIzaSyBs6TCfs_JmvS5q7o7uek8Vj6ztLYwlfpk",
+  authDomain: "gpcssi-website.firebaseapp.com",
+  databaseURL: "https://gpcssi-website-default-rtdb.firebaseio.com",
+  projectId: "gpcssi-website",
+  storageBucket: "gpcssi-website.appspot.com",
+  messagingSenderId: "112789278985",
+  appId: "1:112789278985:web:778a5dfcc555bd5d6343d8",
+  measurementId: "G-MRFXK4KRS9"
+};
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const [panelShown, setPanelShow] = useState(false);
-  const navigate = useNavigate();
+// Initialize Firebase
+if (!firebase.apps.length) {
+  firebase.initializeApp(firebaseConfig);
+}
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (username.toLowerCase() === "admin" && password === "admin") {
-      const token = generateToken();
-      Cookies.set("user_auth", `${token}/${username}`, { expires: 1 });
-      navigate("/");
-      setUsername("");
-      setPassword("");
-    } else {
-      alert("Wrong username or password");
-    }
-  };
+const LoginScreen = () => {
+  const [fontsLoaded, setFontsLoaded] = useState(false);
 
   useEffect(() => {
-    const token = Cookies.get("user_auth");
-    if (token) {
-      setPanelShow(true);
-      setUsername(token.split("/").pop().toLocaleUpperCase());
-    } else {
-      setPanelShow(false);
-    }
+    // Load custom fonts if any
+    const loadFonts = async () => {
+      // Simulate font loading
+      setTimeout(() => {
+        setFontsLoaded(true);
+      }, 1000);
+    };
+    loadFonts();
   }, []);
 
+  const isUserEqual = (googleUser, firebaseUser) => {
+    if (firebaseUser) {
+      var providerData = firebaseUser.providerData;
+      for (var i = 0; i < providerData.length; i++) {
+        if (
+          providerData[i].providerId ===
+          firebase.auth.GoogleAuthProvider.PROVIDER_ID &&
+          providerData[i].uid === googleUser.profileObj.googleId
+        ) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+
+  const onSignIn = async (googleUser) => {
+    const unsubscribe = firebase.auth().onAuthStateChanged(async (firebaseUser) => {
+      unsubscribe();
+      if (!isUserEqual(googleUser, firebaseUser)) {
+        const credential = firebase.auth.GoogleAuthProvider.credential(
+          googleUser.credential.idToken,
+          googleUser.credential.accessToken
+        );
+
+        try {
+          const result = await firebase.auth().signInWithCredential(credential);
+          if (result.additionalUserInfo.isNewUser) {
+            await firebase.database().ref("/users/" + result.user.uid).set({
+              gmail: result.user.email,
+              profile_picture: result.additionalUserInfo.profile.picture,
+              locale: result.additionalUserInfo.profile.locale,
+              first_name: result.additionalUserInfo.profile.given_name,
+              last_name: result.additionalUserInfo.profile.family_name,
+              current_theme: "dark"
+            });
+          }
+        } catch (error) {
+          console.error("Error during sign in: ", error.message);
+        }
+      } else {
+        console.log("User already signed-in Firebase.");
+      }
+    });
+  };
+
+  const login = useGoogleLogin({
+    onSuccess: tokenResponse => onSignIn(tokenResponse),
+    onError: error => console.error("Login failed: ", error),
+  });
+
+  if (!fontsLoaded) {
+    return <div>Loading...</div>;
+  }
+
   return (
-    <div className="flex flex-col h-screen items-center justify-center gap-8">
-      <p className="text-[#AD0F0E] font-bold text-6xl my-8">
-        {panelShown ? `Welcome ${username}` : "Login"}
-      </p>
-      {!panelShown ? (
-        <form className="flex flex-col gap-6 w-screen items-center" onSubmit={handleSubmit}>
-          <input
-            className="border-b-2 focus:outline-none focus:border-b-black text-3xl w-4/12"
-            placeholder="Enter Your Username"
-            value={username}
-            onChange={(e) => {
-              setUsername(e.target.value);
-            }}
-          />
-          <input
-            className="border-b-2 focus:outline-none focus:border-b-black text-3xl w-4/12"
-            placeholder="Enter Your Password"
-            value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-          <button
-            type="submit"
-            className="hover:bg-[#323576] bg-white mt-8 rounded-2xl min-w-32 py-2 hover:text-white text-[#323576] border border-[#323576]"
-          >
-            <p className="capitalize text-xl font-semibold">Login</p>
-          </button>
-        </form>
-      ) : (
-        <div className="flex flex-col">
-          <Link
-            to={"/attendance"}
-            className="hover:bg-[#323576] bg-white my-2 rounded-2xl min-w-40 py-2 px-4 hover:text-white text-[#323576] border border-[#323576]"
-          >
-            <p className="capitalize text-xl font-semibold">Mark Attendance</p>
-          </Link>
-          <button
-            onClick={() => {
-              Cookies.remove("user_auth");
-              navigate('/');
-              window.location.reload();
-            }}
-            className="hover:bg-[#323576] bg-white my-2 rounded-2xl min-w-40 py-2 px-4 hover:text-white text-[#323576] border border-[#323576]"
-          >
-            <p className="capitalize text-xl font-semibold">Logout</p>
-          </button>
-        </div>
-      )}
-    </div>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.appTitle}>
+        <Image
+          source={require("../assets/logo.png")}
+          style={styles.appIcon}
+        />
+      </View>
+      <View style={styles.buttonContainer}>
+        <Button
+          title="Sign in with Google"
+          onPress={() => login()}
+          style={styles.button}
+        />
+      </View>
+    </SafeAreaView>
   );
-}
+};
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#15193c",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  appTitle: {
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  appIcon: {
+    width: 130,
+    height: 130,
+    resizeMode: "contain",
+    borderRadius: 15,
+    borderColor: "white",
+  },
+  buttonContainer: {
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  button: {
+    width: 250,
+    height: 50,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 30,
+    backgroundColor: "white"
+  },
+});
+
+export default LoginScreen;

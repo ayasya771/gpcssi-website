@@ -5,12 +5,28 @@ import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import NotFound from "./pages/NotFound";
+
 import Login from "./pages/auth/Login";
+import { GoogleOAuthProvider } from '@react-oauth/google';
+
 import Attendance from "./pages/Attendance";
+
 import Archive from "./pages/Archive";
 import MainArchiveView from "./pages/MainArchiveView";
+
 import ScrollToTop from "./scrollToTop";
 import About from "./pages/About";
+
+
+
+const clientId = "490465160082-00bakgfa3k109ellamflbsuqsjnfo9mm.apps.googleusercontent.com";
+
+ReactDOM.render(
+  <GoogleOAuthProvider clientId={clientId}>
+    <LoginScreen/>
+  </GoogleOAuthProvider>,
+  document.getElementById("root")
+);
 
 function App() {
   const [loading, setLoading] = useState(true);
